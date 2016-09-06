@@ -10,11 +10,13 @@ namespace Spent
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new ExpensesPage())
-			{
-				BarBackgroundColor = (Color)Resources["Primary"],
-				BarTextColor = Color.White
-			};
+			MainPage = new LoginPage();
+
+			//MainPage = new NavigationPage(new ExpensesPage())
+			//{
+			//	BarBackgroundColor = (Color)Resources["Primary"],
+			//	BarTextColor = Color.White
+			//};
 		}
 
 		protected override void OnStart()
