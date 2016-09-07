@@ -15,7 +15,7 @@ namespace Spent
 
 		#region INotifyPropertyChanged Implementation
 		public event PropertyChangedEventHandler PropertyChanged;
-		void OnPropertyChanged([CallerMemberName] string name = null) =>
+		public void OnPropertyChanged([CallerMemberName] string name = null) =>
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 		#endregion
 	}

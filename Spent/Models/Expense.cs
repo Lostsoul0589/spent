@@ -1,14 +1,14 @@
 ﻿using System;
+using AppServiceHelpers.Models;
 
 namespace Spent
 {
-	public class Expense
+	public class Expense : EntityData
 	{
-		public string Id { get; set; }
-		public DateTime Date { get; set; }
 		public string Company { get; set; }
-		public double Amount { get; set; }
 		public string Description { get; set; }
+		public string Amount { get; set; }
+		public DateTime Date { get; set; }
 		public string Receipt { get; set; }
 	}
 }

@@ -2,8 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-using Plugin.Media;
-using Plugin.Media.Abstractions;
+using AppServiceHelpers;
 using Xamarin.Forms;
 
 namespace Spent
@@ -21,9 +20,26 @@ namespace Spent
 			GetExpensesCommand = new Command(
 				async () => await GetExpensesAsync(), () => !IsBusy);
 			AddExpenseCommand = new Command(
-				async () => await AddExpenseAsync(), () => !IsBusy);
+				() => AddExpense(), () => !IsBusy);
 
 			GetExpensesAsync();
+		}
+
+		Expense selectedExpenseItem;
+		public Expense SelectedExpenseItem
+		{
+			get { return selectedExpenseItem; }
+			set
+			{
+				selectedExpenseItem = value;
+				OnPropertyChanged();
+
+				if (selectedExpenseItem != null)
+				{
+					MessagingCenter.Send(this, "NavigateToDetail", SelectedExpenseItem);
+					SelectedExpenseItem = null;
+				}
+			}
 		}
 
 		async Task GetExpensesAsync()
@@ -36,21 +52,16 @@ namespace Spent
 			try
 			{
 				Expenses.Clear();
-				Expenses.Add(new Expense
-				{
-					Company = "Target",
-					Amount = 25.00
-				});
 
-				Expenses.Add(new Expense
+				var expenses = await EasyMobileServiceClient.Current.Table<Expense>().GetItemsAsync();
+				foreach (var expense in expenses)
 				{
-					Company = "Walmart",
-					Amount = 99.00
-				});
+					Expenses.Add(expense);
+				}
 			}
 			catch (Exception ex)
 			{
-				MessagingCenter.Send<ExpensesViewModel, string>(this, "Error", ex.Message);
+				MessagingCenter.Send(this, "Error", ex.Message);
 			}
 			finally
 			{
@@ -58,7 +69,7 @@ namespace Spent
 			}
 		}
 
-		async Task AddExpenseAsync()
+		void AddExpense()
 		{
 			if (IsBusy)
 				return;
@@ -67,32 +78,11 @@ namespace Spent
 
 			try
 			{
-				await CrossMedia.Current.Initialize();
-
-				MediaFile photo;
-				if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
-				{
-					photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-					{
-						Directory = "Expenses",
-						Name = "expense.jpg"
-					});
-				}
-				else
-				{
-					photo = await CrossMedia.Current.PickPhotoAsync();
-				}
-
-				Expenses.Add(new Expense
-				{
-					Company = "Test",
-					Description = "Test description",
-					Receipt = photo.Path
-				});
+				MessagingCenter.Send(this, "Navigate", "NewExpensePage");
 			}
 			catch (Exception ex)
 			{
-				MessagingCenter.Send<ExpensesViewModel, string>(this, "Error", ex.Message);
+				MessagingCenter.Send(this, "Error", ex.Message);
 			}
 			finally
 			{

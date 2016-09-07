@@ -5,13 +5,13 @@ using Xamarin.Forms;
 
 namespace Spent
 {
-	public partial class ExpensesPage : ContentPage
+	public partial class NewExpensePage : ContentPage
 	{
-		public ExpensesPage()
+		public NewExpensePage()
 		{
 			InitializeComponent();
 
-			BindingContext = new ExpensesViewModel();
+			BindingContext = new NewExpenseViewModel();
 		}
 
 		protected override void OnAppearing()
@@ -35,19 +35,11 @@ namespace Spent
 				DisplayAlert("Error", s, "OK");
 			});
 
-			MessagingCenter.Subscribe<ExpensesViewModel, string>(this, "Navigate", async (obj, s) =>
+			MessagingCenter.Subscribe<NewExpenseViewModel, string>(this, "Navigate", async (obj, s) =>
 			{
-				if (s == "NewExpensePage")
+				if (s == "ExpensesPage")
 				{
-					await Navigation.PushAsync(new NewExpensePage());
-				}
-			});
-
-			MessagingCenter.Subscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail", async (obj, expense) =>
-			{
-				if (expense != null)
-				{
-					await Navigation.PushAsync(new ExpenseDetailPage(expense));
+					await Navigation.PopAsync();
 				}
 			});
 		}
@@ -56,7 +48,6 @@ namespace Spent
 		{
 			MessagingCenter.Unsubscribe<ExpensesViewModel, string>(this, "Error");
 			MessagingCenter.Unsubscribe<ExpensesViewModel, string>(this, "Navigate");
-			MessagingCenter.Unsubscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail");
 		}
 	}
 }

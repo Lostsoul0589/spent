@@ -8,7 +8,8 @@
 		<ListView ItemsSource="{Binding Expenses}"
 				IsPullToRefreshEnabled="true"
 				IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-				RefreshCommand="{Binding GetExpensesCommand}">
+				RefreshCommand="{Binding GetExpensesCommand}"
+				SelectedItem="{Binding SelectedExpenseItem, Mode=TwoWay}">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<TextCell Text="{Binding Company}" Detail="{Binding Amount}" />
