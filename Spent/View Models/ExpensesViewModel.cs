@@ -18,9 +18,9 @@ namespace Spent
 		{
 			Expenses = new ObservableCollection<Expense>();
 			GetExpensesCommand = new Command(
-				async () => await GetExpensesAsync(), () => !IsBusy);
+				async () => await GetExpensesAsync());
 			AddExpenseCommand = new Command(
-				() => AddExpense(), () => !IsBusy);
+				() => AddExpense());
 
 			GetExpensesAsync();
 		}
@@ -53,7 +53,7 @@ namespace Spent
 			{
 				Expenses.Clear();
 
-				var expenses = await EasyMobileServiceClient.Current.Table<Expense>().GetItemsAsync();
+				var expenses = await App.AzureClient.Table<Expense>().GetItemsAsync();
 				foreach (var expense in expenses)
 				{
 					Expenses.Add(expense);

@@ -96,9 +96,6 @@
     <Reference Include="Plugin.Media">
       <HintPath>..\packages\Xam.Plugin.Media.2.3.0\lib\MonoAndroid10\Plugin.Media.dll</HintPath>
     </Reference>
-    <Reference Include="AppServiceHelpers.Ext">
-      <HintPath>..\packages\AppService.Helpers.1.1.0-pre-release\lib\MonoAndroid10\AppServiceHelpers.Ext.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -129,6 +126,9 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore">
       <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.3.0.0-beta\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid+xamarinios10\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Azure.Mobile">
+      <HintPath>..\packages\AppService.Helpers.1.0.4\lib\Azure.Mobile.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

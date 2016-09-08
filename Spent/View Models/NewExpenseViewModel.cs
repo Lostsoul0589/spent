@@ -17,7 +17,13 @@ namespace Spent
 		public string Description { get; set; }
 		public DateTime DateTime { get; set; }
 		public string Amount { get; set; }
-		public string Receipt { get; set; }
+
+		string receipt;
+		public string Receipt
+		{
+			get { return receipt; }
+			set { receipt = value; OnPropertyChanged(); }
+		}
 
 		public NewExpenseViewModel()
 		{
@@ -46,7 +52,7 @@ namespace Spent
 					Receipt = Receipt
 				};
 
-				await EasyMobileServiceClient.Current.Table<Expense>().AddAsync(expense);
+				await App.AzureClient.Table<Expense>().AddAsync(expense);
 
 				MessagingCenter.Send(this, "Navigate", "ExpensesPage");
 			}

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Spent.NewExpensePage"
 		Title="New Expense">
 	<ContentPage.ToolbarItems>
-		<ToolbarItem Text="Save" Command="{Binding AddExpenseCommand}" />
+		<ToolbarItem Text="Save" Command="{Binding SaveExpenseCommand}" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
 		<StackLayout Padding="20">

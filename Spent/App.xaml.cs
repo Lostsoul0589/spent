@@ -2,22 +2,26 @@
 using Xamarin.Forms.Xaml;
 
 using AppServiceHelpers;
+using AppServiceHelpers.Abstractions;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Spent
 {
 	public partial class App : Application
 	{
+		public static IEasyMobileServiceClient AzureClient { get; set; }
+
 		public App()
 		{
 			InitializeComponent();
 
 			// Initialize App Service Helpers
-			EasyMobileServiceClient.Current.Initialize("http://spendapplab.azurewebsites.net/");
-			EasyMobileServiceClient.Current.RegisterTable<Expense>();
-			EasyMobileServiceClient.Current.FinalizeSchema();
+			AzureClient = EasyMobileServiceClient.Create();
+			AzureClient.Initialize("http://spendapplab.azurewebsites.net/");
+			AzureClient.RegisterTable<Expense>();
+			AzureClient.FinalizeSchema();
 
-			MainPage = new NavigationPage(new NewExpensePage())
+			MainPage = new NavigationPage(new ExpensesPage())
 			{
 				BarBackgroundColor = (Color)Resources["Primary"],
 				BarTextColor = Color.White
