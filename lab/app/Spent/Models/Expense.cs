@@ -1,5 +1,4 @@
 ﻿using System;
-using AppServiceHelpers.Models;
 
 namespace Spent
 {

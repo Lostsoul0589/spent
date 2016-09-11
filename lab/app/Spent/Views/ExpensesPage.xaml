@@ -9,10 +9,11 @@
 				IsPullToRefreshEnabled="true"
 				IsRefreshing="{Binding IsBusy, Mode=OneWay}"
 				RefreshCommand="{Binding GetExpensesCommand}"
-				SelectedItem="{Binding SelectedExpenseItem, Mode=TwoWay}">
+				SelectedItem="{Binding SelectedExpenseItem, Mode=TwoWay}"
+				CachingStrategy="RecycleElement">
 			<ListView.ItemTemplate>
 				<DataTemplate>
-					<TextCell Text="{Binding Company}" Detail="{Binding Amount}" />
+					<TextCell Text="{Binding Company}" Detail="{Binding Amount}" TextColor="{Binding Primary}" />
 				</DataTemplate>
 			</ListView.ItemTemplate>
 		</ListView>

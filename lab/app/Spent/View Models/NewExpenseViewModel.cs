@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using AppServiceHelpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
@@ -52,8 +51,7 @@ namespace Spent
 					Receipt = Receipt
 				};
 
-				await App.AzureClient.Table<Expense>().AddAsync(expense);
-
+				MessagingCenter.Send(this, "AddExpense", expense);
 				MessagingCenter.Send(this, "Navigate", "ExpensesPage");
 			}
 			catch (Exception ex)

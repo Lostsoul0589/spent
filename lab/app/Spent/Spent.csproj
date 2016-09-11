@@ -57,6 +57,10 @@
     <Compile Include="Views\ExpenseDetailPage.xaml.cs">
       <DependentUpon>ExpenseDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\MockDataService.cs" />
+    <Compile Include="Services\AzureDataService.cs" />
+    <Compile Include="Models\EntityData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -98,9 +102,6 @@
     <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore">
       <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.3.0.0-beta\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid+xamarinios10\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
     </Reference>
-    <Reference Include="Azure.Mobile">
-      <HintPath>..\packages\AppService.Helpers.1.0.4\lib\Azure.Mobile.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -109,6 +110,7 @@
     <Folder Include="View Models\" />
     <Folder Include="Models\" />
     <Folder Include="Views\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

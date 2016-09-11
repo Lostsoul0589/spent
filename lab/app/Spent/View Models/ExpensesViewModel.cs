@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-using AppServiceHelpers;
 using Xamarin.Forms;
 
 namespace Spent
@@ -22,7 +21,19 @@ namespace Spent
 			AddExpenseCommand = new Command(
 				() => AddExpense());
 
+			MessagingCenter.Subscribe<NewExpenseViewModel, Expense>(this, "AddExpense", async (obj, expense) =>
+			{
+				Expenses.Add(expense);
+
+				await DependencyService.Get<IDataService>().AddExpenseAsync(expense);
+			});
+
 			GetExpensesAsync();
+		}
+
+		~ExpensesViewModel()
+		{
+			MessagingCenter.Unsubscribe<NewExpensePage, string>(this, "AddExpense");
 		}
 
 		Expense selectedExpenseItem;
@@ -53,7 +64,7 @@ namespace Spent
 			{
 				Expenses.Clear();
 
-				var expenses = await App.AzureClient.Table<Expense>().GetItemsAsync();
+				var expenses = await DependencyService.Get<IDataService>().GetExpensesAsync();
 				foreach (var expense in expenses)
 				{
 					Expenses.Add(expense);
