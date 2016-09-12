@@ -1,11 +1,11 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spent", "Spent\Spent.csproj", "{EB84E071-F121-4CC4-BBD5-147A5E448A3F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spent.iOS", "iOS\Spent.iOS.csproj", "{5F0A57CF-769E-4577-8A30-A317A288D941}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spent.Droid", "Droid\Spent.Droid.csproj", "{B384E318-8BF6-491E-825F-63069D1D85EF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Spent", "Spent\Spent.shproj", "{2C955BAF-7CC3-4FB4-98B8-70474EA7161B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,18 +17,6 @@ Global
 		Debug|iPhone = Debug|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|iPhone.Build.0 = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{EB84E071-F121-4CC4-BBD5-147A5E448A3F}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{5F0A57CF-769E-4577-8A30-A317A288D941}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
 		{5F0A57CF-769E-4577-8A30-A317A288D941}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{5F0A57CF-769E-4577-8A30-A317A288D941}.Release|Any CPU.ActiveCfg = Release|iPhone
