@@ -20,6 +20,8 @@ namespace Spent.Droid
 
 			base.OnCreate(bundle);
 
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+			         
 			Xamarin.Forms.Forms.Init(this, bundle);
 			LoadApplication(new App());
 		}

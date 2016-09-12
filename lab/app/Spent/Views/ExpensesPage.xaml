@@ -5,17 +5,21 @@
 		<ToolbarItem Text="Add" Command="{Binding AddExpenseCommand}" />
 	</ContentPage.ToolbarItems>
 	<ContentPage.Content>
-		<ListView ItemsSource="{Binding Expenses}"
-				IsPullToRefreshEnabled="true"
-				IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-				RefreshCommand="{Binding GetExpensesCommand}"
-				SelectedItem="{Binding SelectedExpenseItem, Mode=TwoWay}"
-				CachingStrategy="RecycleElement">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<TextCell Text="{Binding Company}" Detail="{Binding Amount}" TextColor="{Binding Primary}" />
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
+		<RelativeLayout x:Name="relativeLayout">
+			<StackLayout>
+				<ListView ItemsSource="{Binding Expenses}"
+					IsPullToRefreshEnabled="true"
+					IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+					RefreshCommand="{Binding GetExpensesCommand}"
+					SelectedItem="{Binding SelectedExpenseItem, Mode=TwoWay}"
+					CachingStrategy="RecycleElement">
+					<ListView.ItemTemplate>
+						<DataTemplate>
+							<TextCell Text="{Binding Company}" Detail="{Binding Amount}" TextColor="{Binding Primary}" />
+						</DataTemplate>
+					</ListView.ItemTemplate>
+				</ListView>
+			</StackLayout>
+		</RelativeLayout>
 	</ContentPage.Content>
 </ContentPage>
