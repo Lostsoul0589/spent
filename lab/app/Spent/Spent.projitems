@@ -26,7 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ExpenseDetailPage.xaml.cs">
       <DependentUpon>ExpenseDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Views\NewExpensePage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\NewExpensePage.xaml.cs">
       <DependentUpon>NewExpensePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -40,11 +40,8 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ExpenseDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Views\NewExpensePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewExpensePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Views\" />
   </ItemGroup>
 </Project>
