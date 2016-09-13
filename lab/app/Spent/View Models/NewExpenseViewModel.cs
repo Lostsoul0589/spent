@@ -9,6 +9,8 @@ namespace Spent
 {
 	public class NewExpenseViewModel : BaseViewModel
 	{
+		MediaFile receiptPhoto;
+
 		public Command SaveExpenseCommand { get; set; }
 		public Command AttachReceiptCommand { get; set; }
 
@@ -47,11 +49,15 @@ namespace Spent
 					Company = Company,
 					Description = Description,
 					Date = DateTime,
-					Amount = Amount,
-					Receipt = Receipt
+					Amount = Amount
 				};
 
-				MessagingCenter.Send(this, "AddExpense", expense);
+				var expenseData = new object[]
+				{
+					expense,
+					receiptPhoto
+				};
+				MessagingCenter.Send(this, "AddExpense", expenseData);
 				MessagingCenter.Send(this, "Navigate", "ExpensesPage");
 			}
 			catch (Exception ex)
@@ -85,6 +91,7 @@ namespace Spent
 				}
 
 				Receipt = photo?.Path;
+				receiptPhoto = photo;
 			}
 			catch (Exception ex)
 			{
