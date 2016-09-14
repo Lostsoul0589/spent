@@ -21,7 +21,7 @@ namespace Spent
 			GetExpensesCommand = new Command(
 				async () => await GetExpensesAsync());
 			AddExpenseCommand = new Command(
-				() => AddExpense());
+				() => NavigateToAddExpense());
 
 			MessagingCenter.Subscribe<NewExpenseViewModel, object[]>(this, "AddExpense", async (obj, expenseData) =>
 			{
@@ -101,7 +101,7 @@ namespace Spent
 			}
 		}
 
-		void AddExpense()
+		void NavigateToAddExpense()
 		{
 			if (IsBusy)
 				return;

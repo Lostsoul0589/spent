@@ -5,8 +5,8 @@ using Xamarin.Forms;
 
 #if __ANDROID__
 using Spent.Droid;
-using Xamarin.Forms.Platform.Android;
 using Android.Support.Design.Widget;
+using Xamarin.Forms.Platform.Android;
 #endif
 
 namespace Spent
