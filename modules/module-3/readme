@@ -1,0 +1,29 @@
+# Module 3: Building Connected Apps with Azure Mobile Apps
+**Objective**: 
+
+##### Prerequisites
+Ensure you have the following software installed:
+
+* Visual Studio 2015 Community Edition (or higher) or Xamarin Studio Community Edition (or higher)
+* [Xamarin](xamarin.com/download)
+
+Download the starter code for this module to begin, or continue working with the completed code from Module 2.
+
+### Module Instructions
+[Overview of module]
+
+Connected Apps presentation
+
+##### 1. Create a new Azure Mobile App.
+Quickstart
+
+Link to learn-azure
+
+##### 2. Configure Azure Easy Tables.
+
+##### 3. Connect Spent to the cloud.
+
+Implement CloudDataService.
+
+##### 4. Update view models to communicate with cloud storage.
+update expensesviewmodel/expensedetailviewmodel

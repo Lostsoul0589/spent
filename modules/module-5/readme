@@ -1,0 +1,25 @@
+# Module 4: Saving Blobs to Azure Storage and Serverless Computing
+**Objective**: 
+
+##### Prerequisites
+Ensure you have the following software installed:
+
+* Visual Studio 2015 Community Edition (or higher) or Xamarin Studio Community Edition (or higher)
+* [Xamarin](xamarin.com/download)
+
+Download the starter code for this module to begin, or continue working with the completed code from Module 3.
+
+### Module Instructions
+[Overview of module]
+
+##### 1. Create an Azure Storage bucket.
+Explain different options.
+
+##### 2. Create a storage container.
+Explain containers.
+
+##### 3. Store receipts to Azure Storage.
+
+##### 4. Create an Azure Function app.
+
+##### 5. Smartly crop images with Azure Storage, Azure Functions, and Microsoft Cognitive Services.

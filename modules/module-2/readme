@@ -1,0 +1,46 @@
+# Module 2: Extending Your First Xamarin.Forms App
+**Objective**: Continue to explore Xamarin.Forms features and functionality, including styles, user interface design, and performance enhancements.
+
+##### Prerequisites
+Ensure you have the following software installed:
+
+* Visual Studio 2015 Community Edition (or higher) or Xamarin Studio Community Edition (or higher)
+* [Xamarin](xamarin.com/download)
+
+Download the starter code for this module to begin, or continue working with the completed code from Module 1.
+
+### Module Instructions
+This module builds on Module 1 by extending your app even further to allow you to add your own expenses, including photos of receipts. We also take a look at the `DependencyService`, styles, native control embedding, as well as performance enhancements to build performant mobile apps.
+
+##### 1. Create a data storage service with the `DependencyService`.
+
+Xamarin.Forms dependencyservice 
+local data
+idataservice
+MockDataService
+
+##### 2. Add new expense view model.
+Xamarin.Forms DependencyService.
+Media Plugin
+
+##### 3. Add new expense page.
+Add page
+Add messaging.
+
+##### 4. Style the application.
+static resource
+dynamic resourcestyles
+    navigation title bar background / text color
+themes
+
+##### 5. Use native embedding to add native controls.
+UI tweaks
+    CRs
+    Effects
+    Native Embedding
+non-ui tweaks 
+    DependencyService
+
+##### 6. Improve application performance.
+Cell Recycling
+XAML Compilation

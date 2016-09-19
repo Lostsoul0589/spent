@@ -1,0 +1,46 @@
+# Module 1: Building Your First Xamarin.Forms App
+**Objective**: Learn the basics of building native mobile apps for iOS, Android, and Windows with Xamarin.Forms. Build a  master-detail application in XAML that uses the Model-View-ViewModel (MVVM) design pattern.
+
+##### Prerequisites
+Ensure you have the following software installed:
+
+* Visual Studio 2015 Community Edition (or higher) or Xamarin Studio Community Edition (or higher)
+* [Xamarin](xamarin.com/download)
+
+Download the starter code for this module to begin.
+
+### Getting Started
+In this workshop, you will learn how to build connected, cross-platform apps for iOS, Android, and Windows with Xamarin.Forms and Microsoft Azure. This workshop takes you from start-to-finish in building an app for tracking personal expenses, including storage of receipts.
+
+This solution contains 4 projects:
+
+* Spent - Shared Project that contains all code that is sharable across multiple platforms (models, view models, views, service logic, etc.).
+* Spent.Droid - Xamarin.Android application
+* Spent.iOS - Xamarin.iOS application
+* Spent.Windows - Windows 10 UWP application (can only be run from Visual Studio 2015 on Windows 10).
+
+[Image of Solution Explorer]
+
+NuGet is a package manager for .NET that helps us take advantage of existing libraries like JSON.NET to share more code and build apps even quicker. All projects already have NuGet dependencies added, so there is no need to install additional NuGets during the workshop. To download the NuGets already added to the projects by restoring them.
+
+To do this, right-click on the solution name in the **Solution Explorer** and click **Restore NuGet Packages**.
+
+### Module Instructions
+Let's get started building our expenses mobile app - Spent!
+
+##### 1. Run the starter code.
+Run the code, see what you see, see key pieces
+
+(show app.cs, mainpage, xaml, codebehind, platform-specific)
+
+##### 2. Add a base view model.
+
+##### 3. Add a expenses view model.
+What is a view model?
+What is Inotifypropertychanged?
+
+##### 4. Add expenses page.
+
+##### 5. Add expense detail page.
+
+##### 6. Navigation with the Messaging Center.
