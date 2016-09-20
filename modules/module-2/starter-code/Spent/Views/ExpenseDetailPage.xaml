@@ -3,15 +3,15 @@
 		Title="Expense Detail">
 	<ContentPage.Content>
 		<StackLayout Padding="20">
-			<Label Text="Company" TextColor="#4d4d4d"/>
+			<Label Text="Company" TextColor="{StaticResource MediumGrayTextColor}"/>
 			<Label Text="{Binding Expense.Company}"/>
-			<Label Text="Description" TextColor="#4d4d4d"/>
+			<Label Text="Description" TextColor="{StaticResource MediumGrayTextColor}"/>
 			<Label Text="{Binding Expense.Description}" />
-			<Label Text="Date" TextColor="#4d4d4d"/>
+			<Label Text="Date" TextColor="{StaticResource MediumGrayTextColor}"/>
 			<Label Text="{Binding Expense.Date}" />
-			<Label Text="Amount" TextColor="#4d4d4d"/>
+			<Label Text="Amount" TextColor="{StaticResource MediumGrayTextColor}"/>
 			<Label Text="{Binding Expense.Amount}" />
-			<Label Text="Receipt" TextColor="#4d4d4d"/>
+			<Label Text="Receipt" TextColor="{StaticResource MediumGrayTextColor}"/>
 			<Image Source="{Binding Expense.Receipt}"/>
 		</StackLayout>
 	</ContentPage.Content>
