@@ -550,6 +550,11 @@ void SubscribeToMessages()
 			await Navigation.PushAsync(new ExpenseDetailPage(expense));
 		}
 	});
+
+	MessagingCenter.Subscribe<ExpensesViewModel, string>(this, "Error", (obj, s) =>
+	{
+		DisplayAlert("Error", s, "OK");
+	});
 }
 ```
 
@@ -559,6 +564,7 @@ We can easily unsuscribe in `UnsubscribeFromMessages` as well.
 
 ```csharp
 MessagingCenter.Unsubscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail");
+MessagingCenter.Unsubscribe<NewExpenseViewModel, string>(this, "Error");
 ```
 
 Run the app, and navigation should still be working as intended - only this time we are properly avoiding tight coupling between our view model and view.
