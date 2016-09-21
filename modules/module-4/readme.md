@@ -1,4 +1,4 @@
-# Module 4: Mobile DevOps with Visual Studio Team Services, Xamarin Test Cloud, and HockeyApp
+# Module 4: Saving Blobs to Azure Storage and Serverless Computing
 **Objective**: 
 
 ##### Prerequisites

@@ -12,6 +12,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)View Models\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View Models\ExpensesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Expense.cs" />
@@ -21,24 +24,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\ExpenseDetailPage.xaml.cs">
       <DependentUpon>ExpenseDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Services\IDataService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)View Models\NewExpenseViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewExpensePage.xaml.cs">
-      <DependentUpon>NewExpensePage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ExpensesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ExpenseDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewExpensePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
