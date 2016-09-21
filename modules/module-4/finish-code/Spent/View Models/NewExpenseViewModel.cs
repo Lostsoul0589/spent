@@ -13,6 +13,7 @@ namespace Spent
 		public string Description { get; set; }
 		public DateTime DateTime { get; set; }
 		public string Amount { get; set; }
+		MediaFile receiptPhoto;
 
 		string receipt;
 		public string Receipt
@@ -54,6 +55,7 @@ namespace Spent
 				}
 
 				Receipt = photo?.Path;
+				receiptPhoto = photo;
 			}
 			catch (Exception ex)
 			{
@@ -79,9 +81,17 @@ namespace Spent
 					Company = Company,
 					Description = Description,
 					Date = DateTime,
-					Amount = Amount,
-					Receipt = Receipt
+					Amount = Amount
 				};
+
+				var expenseData = new object[]
+				{
+					expense,
+					receiptPhoto
+				};
+
+				MessagingCenter.Send(this, "AddExpense", expenseData);
+				MessagingCenter.Send(this, "Navigate", "ExpensesPage");
 
 				MessagingCenter.Send(this, "AddExpense", expense);
 				MessagingCenter.Send(this, "Navigate", "ExpensesPage");

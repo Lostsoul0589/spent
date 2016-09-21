@@ -12,14 +12,32 @@ Download the starter code for this module to begin, or continue working with the
 ### Module Instructions
 [Overview of module]
 
-##### 1. Create an Azure Storage bucket.
-Explain different options.
+##### 1. Create a Visual Studio Team Services account.
 
-##### 2. Create a storage container.
-Explain containers.
 
-##### 3. Store receipts to Azure Storage.
+##### 2. Connect Visual Studio Team Services to GitHub.
 
-##### 4. Create an Azure Function app.
+##### 3. Create a build definition.
 
-##### 5. Smartly crop images with Azure Storage, Azure Functions, and Microsoft Cognitive Services.
+##### 3. Configure the repository.
+
+##### 4. Configure the build definition.
+
+##### 5. Queue your first continuous integration build.
+
+##### 6. Create HockeyApp account.
+
+##### 7. Create HockeyApp project.
+
+##### 8. Continuously deploy to HockeyApp from Visual Studio Team Services.
+
+### Bonus
+[Overview]
+
+##### 1. Start a Xamarin Test Cloud trial.
+
+##### 2. Create your first automated user interface test script.
+
+##### 3. Test your app in Xamarin Test Cloud.
+
+##### 4. Add Xamarin Test Cloud to Visual Studio Team Services before deployment
