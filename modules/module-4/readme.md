@@ -1,4 +1,4 @@
-# Module 4: Saving Blobs to Azure Storage and Serverless Computing
+# Module 4: Saving Blobs to Azure Storage
 **Objective**: Learn the basics of Azure Storage and Azure Functions, and how they relate to mobile app development.
 
 ##### Prerequisites
@@ -208,20 +208,3 @@ MessagingCenter.Subscribe<NewExpenseViewModel, object[]>(this, "AddExpense", asy
 ```
 
 Great! Now run the app, create a new expense, attach a receipt, and save the photo. If you'd like, open the app up in another simulator, pull down the changes, and see that the image downloads and is shown on the expense detail page.
-
-##### 4. Create an Azure Function app.
-**Azure Functions** is an event-driven, compute-on-demand experience that extends the existing Azure application platform with capabilities to execute code triggered by events occuring in other Azure searvices, SaaS products, and on-premises systems. Often in backend development, you'll have code that needs to execute when certain triggers are hit (ex: blob added to Azure Storage, timer, etc.). Often, you'll find yourself writing a function where you may have previously had a `WebJob`. Functions are better because they scale in terms of demand, saving you money. They're also self-contained, and many of the event triggers are setup in advance for you.
-
-Let's create an Azure Function to smartly crop and scale our receipt image whenever a new blob is added to Azure Storage. Start by going to [portal.azure.com](portal.azure.com), click `New`, search for `Function App`, click on the result, and click `Create`.
-
-The new `Function App` blade will appear. Enter some information for your new function app.
-
-* `App name`: Must be unique, as this is a URL.
-* `Resource Group`: Select `Use existing`, and select the resource group created in Module 3. For `App Service Plan`, select `Classic`.
-* `App Service plan/Location`: Select the plan created in Module 3.
-* `Storage account`: Select the storage account created earlier in this module.
-
-Click `Create`, and a new Azure Functions app will be deployed. Note that this can take a few minutes to complete, as a website is being created and deployed.
-
-##### 5. Smartly crop images with Azure Storage, Azure Functions, and Microsoft Cognitive Services.
-Within a Function App are self-contained individual Azure Functions. Navigate to the function app you just created. To get started, click the `New Function` button. Select the `BlobTrigger - C#` template. This will preconfigure a function that is run when a new blob is added to a container. Name the function anything you would like; this name just has to be unique to our functions app. For `Path`, enter our container name, `receipts`. For `Storage account connection`, click `New`. 
