@@ -37,11 +37,17 @@ namespace Spent
 					await Navigation.PushAsync(new ExpenseDetailPage(expense));
 				}
 			});
+
+			MessagingCenter.Subscribe<ExpensesViewModel, string>(this, "Error", (obj, s) =>
+			{
+				DisplayAlert("Error", s, "OK");
+			});
 		}
 
 		void UnsubscribeFromMessages()
 		{
 			MessagingCenter.Unsubscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail");
+			MessagingCenter.Unsubscribe<NewExpenseViewModel, string>(this, "Error");
 		}
 	}
 }
