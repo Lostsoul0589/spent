@@ -32,22 +32,22 @@ The `Create storage account` blade will appear. Configure your Azure Storage acc
 * `Resource group`, select `Use existing`, and select the resource group created in Module 3.
 * `Location`, select whatever is closest to you. Typically, this is the same as the value selected in Module 3.
 
-[create-storage-account]
+ ![](/modules/module-4/images/create-storage-account.png)
 
 Click `Create` to create a specialized Azure Storage account for blobs. This may take up to a minute or two to deploy.
 
 Once deployed, click the `Access keys` setting in the storage account sidebar. Copy the `Storage account name`, as well as the value for `key1`. Save these for later, as we will use them to connect our app to the storage account.
 
-[access-kesy]
+ ![](/modules/module-4/images/access-keys.png)
 
 ##### 2. Create a storage container.
 Now that we have a storage account, we need a way to store blobs into our account. Blobs are required to be stored in **containers**, which are just folders for your blobs. Let's create a container. Navigate to your storage account within your resource group created in Module 3. Click on storage account, followed by `+ Container`. The `New container` blade will appear.
 
-[create-container]
+ ![](/modules/module-4/images/create-container.png)
 
 Name the container `receipts`, select the `Blob` access type to allow public read access to our blobs, and click `Create`. A new container named `receipts` will appear in the container list, along with a URL to access the container.
 
-[created-container]
+ ![](/modules/module-4/images/created-container.png)
 
 ##### 3. Store receipts to Azure Storage.
 Now that our server-side setup is complete to store blobs, let's update our Spent app to use Azure Storage to store photos of receipts. 
