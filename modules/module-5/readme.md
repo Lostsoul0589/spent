@@ -23,13 +23,13 @@ Create a new repository by clicking `+ ->  New respository` in the upper-rightha
 * `Public / Private`: Feel free to make the repository `Public`, but this will also work with `Private`.
 * `Initialize this repository with a README` / `Add .gitignore` / `Add a license`: These are all optional fields.
 
-[create-repository]
+ ![](/modules/module-5/images/create-repository.png)
 
 Click `Create repository`, and a GitHub respository will be created. Click `Clone or download -> Open in Desktop` to open the respository in the GitHub desktop client.
 
 Drag the code from this module's folder to the respository folder. This is most likely in `Documents/GitHub/YOUR-REPOSITORY-NAME`. After this finishes copying, open the GitHub desktop client, select your respository, and enter a `Summary` in the GitHub client and click `Commit to master`. To sync the changes to GitHub, click the `Sync` button.
 
-[spent-github-client]
+ ![](/modules/module-5/images/spent-github-client.png)
 
 Awesome! Now that our code is hosted in GitHub, let's configure a VSTS account to provide continuous integration.
 
@@ -40,25 +40,25 @@ Visit the [Visual Studio Team Services landing page](https://www.visualstudio.co
 
 Start by entering an account name, and selecting how you would like to handle version control. One of my favorite features of VSTS is that it integrates nicely with GitHub as well, if you elect not to use the built-in version control in VSTS. Click the `Continue` button. It may take a minute or two to provision a VSTS account.
 
-[create-account]
+ ![](/modules/module-5/images/create-account.png)
 
 `MyFirstProject` will be provisioned in Visual Studio Team Services for you to explore everything VSTS has to offer. We will want to create a new project for Spent. We can do that by clicking the `Team Services` logo in the upper-lefthand corner. Next, click the `New` button under `Recent projects and teams`. The `Create team project` dialog will appear.
 
 * `Project name`: Enter `Spent`.
 * `Description`, `Process template`, `Version control`: Not required for this module, but feel free to select the option that works best for you.
 
-[create-project]
+ ![](/modules/module-5/images/create-project.png)
 
 Click `Create Project`, allow the project time to spin up, and click `Navigate to project`. This is your project dashboard, where you have access to code, issue tracking, build information, and more.
 
 ##### 3. Connect Visual Studio Team Services to GitHub.
 Visual Studio Team Services works great with GitHub. To connect our code for Spent to the VSTS project, click the project settings icon in the top right of the page.
 
-[vsts-settings]
+ ![](/modules/module-5/images/vsts-settings.png)
 
 We can add GitHub as a new service endpoint under the services tab (along with many other service integrations). Click on the `Services` tab, click `New Service Endpoint -> GitHub`.
 
-[add-service-endpoint]
+ ![](/modules/module-5/images/add-service-endpoint.png)
 
 Click the `Authorize` button and authorize Visual Studio Team Services to access your account. Once the authentication is successful, click `OK`.
 
@@ -69,13 +69,13 @@ For this module, we will configure continuous integration for our Android Spent 
 
 To get started, click on the `Build` tab on the navigation bar, followed by the `New definition` button. The `Create new build definition` screen will appear. Click on the `Xamarin.Android` build definition, and click `Next`.
 
-[new-build-definition]
+ ![](/modules/module-5/images/new-build-definition.png)
 
 For `Repository source`, click `GitHub`, and check the `Continuous integration` button. Click `Create` to create the build definition.
 
 Let's configure our build definition to pull code from our `Spent` repository on GitHub. Click the `Repository` tab. Select the repository you just crerated from the dropdown, set the `Default branch` to `master`, and set `Clean` to `true`.
 
-[configure-repository]
+ ![](/modules/module-5/images/configure-repository.png)
 
 Next, jump back over to the `Build` tab where we can add, edit, and remove steps in our build definition. You can see that our template added a few steps for us, such as restoring NuGet packages, building the solution, and signing the APK files. Let's disable the `Xamarin Test Cloud` and unit testing build steps for now by right-clicking it and selecting `Disable selected tasks`. 
 
@@ -84,11 +84,11 @@ Boom! We're done configuring our build definition.
 ##### 5. Queue your first continuous integration build.
 Now that we have VSTS and GitHub configured, let's start building. Tap `Save` on the final build definition and give it a unique name. We can now click the `Queue new build...` button on the upper-righthand side of the page.
 
-[queue-build-button]
+ ![](/modules/module-5/images/queue-build-button.png)
 
 The defaults should work great, so we can just click `OK` to start the build. Our first build is now queued in the hosted agent, and we will soon be abl to see our build begin. When completed, we can view a full build log, as well as a list of artifacts to download (such as the Android APK).
 
-[build-succeeded]
+ ![](/modules/module-5/images/build-succeeded.png)
 
 Boom! Our build succeeded! But what if we wanted to automatically build our app with every commit? We can do that by creating a **trigger** in our build definition. Click the `Triggers` button in the build definition navigation bar, click `Continuous Integration` and click `Save`. We now have continuous integration for our Android app fully configured in just a few minutes!
 
@@ -102,7 +102,7 @@ Go to [HockeyApp.net](https://rink.hockeyapp.net/users/sign_up) to sign up. If y
 ##### 7. Create HockeyApp project.
 To get started, let's create a HockeyApp project. Most likely, you will want to do this on a per app, per platform basis. To get started, click the `New App` button on the [HockeyApp dashboard](https://rink.hockeyapp.net/manage/dashboard). Select the `Create an app manually instead` option.
 
-[create-app]
+ ![](/modules/module-5/images/create-app.png)
 
 The `Create App` page will load.
 
@@ -115,16 +115,16 @@ Click `Save` to creat the application. Be sure to take note of your `App ID`. Ne
 ##### 8. Continuously deploy to HockeyApp from Visual Studio Team Services.
 Visual Studio Team Services has tons of built-in functionality that can be extended even further via free and paid extensions in the [Visual Studio Team Services Marketplace](https://marketplace.visualstudio.com/VSTS). To gain continuous deployment with HockeyApp, [install HockeyApp from the VSTS Marketplace](https://marketplace.visualstudio.com/items?itemName=ms.hockeyapp). Select the VSTS account you wish to install the extension into, and click `Confirm`.
 
-[install-hockeyapp]
+ ![](/modules/module-5/images/install_hockeyapp.png)
 
 Let's connect our HockeyApp account to the `Spent` team. Navigate back to your project settings in Visual Studio Team Services, and select the `Services` tab. Click `New Service Endpoint -> HockeyApp`. For `Connection Name`, enter `HockeyApp`. For `API Token`, enter the API token generated in Step #7. 
 
 Jump back the build definition created in Step #4 and click `Add build step -> Deploy -> HockeyApp -> Add`. A build step will appear for HockeyApp in the build definition, then click `Close`. 
 
-[Add-deploy step]
+ ![](/modules/module-5/images/add-deploy-step.png)
 
 Click on the build definition step for HockeyApp. Select the `HockeyApp Connection` just created. For `App Id`, copy the `App Id` from HockeyApp for the project we created earlier in Step #7. For `Binary File Path`, enter `$(build.binariesdirectory)/$(BuildConfiguration)/*.apk`. Click `Save` to update the build definition. Queue a new build, and you will see your app build and deploy to HockeyApp!
 
-[hockey-app-success]
+ ![](/modules/module-5/images/hockey-app-success.png)
 
 In this workshop, you created your first mobile app for iOS, Android, and Windows using Xamarin.Forms to track expenses. We then connected our app to the cloud using the no-code Easy Tables backend in Azure Mobile Apps, and saved files to cloud storage using Azure Storage. Finally, we took a look at how to configure mobile DevOps for your apps with Visual Studio Team Services and HockeyApp.
