@@ -19,8 +19,6 @@ This solution contains 4 projects:
 * Spent.iOS - Xamarin.iOS application
 * Spent.Windows - Windows 10 UWP application (can only be run from Visual Studio 2015 on Windows 10).
 
-[Image of Solution Explorer]
-
 NuGet is a package manager for .NET that helps us take advantage of existing libraries like JSON.NET to share more code and build apps even quicker. All projects already have NuGet dependencies added, so there is no need to install additional NuGets during the workshop. To download the NuGets already added to the projects by restoring them.
 
 To do this, right-click on the solution name in the **Solution Explorer** and click **Restore NuGet Packages**.
@@ -29,13 +27,11 @@ To do this, right-click on the solution name in the **Solution Explorer** and cl
 Let's get started building our expenses mobile app - Spent!
 
 ##### 1. Run the starter code.
-To begin, open up the starter code in either Visual Studio or Xamarin Studio. Debug the application for either iOS, Android, or Universal Windows Platform (UWP). 
+To begin, open up the starter code in either Visual Studio or Xamarin Studio. Debug the application for either iOS, Android, or Universal Windows Platform (UWP).
 
 > Note that if you are using Visual Studio on Windows, you will need to have to be connected to a Mac to build and debug the iOS solution. If you are running Xamarin Studio on Mac, the Universal Windows Platform project cannot be built.
 
-When the app deploys to the simulator or emulator, you should see something similar to the following.
-
-[Image of App]
+When the app deploys to the simulator or emulator, you will see a single label that says "Welcome to Xamarin.Forms!".
 
 Let's investigate the key pieces of a Xamarin.Forms application. Expand the `Spent` project to see several empty folders and a few files. Traditional Xamarin apps allow us to share between 70-90% of code, but all user interface logic resides in the individual platform projects. For Xamarin.Forms apps, we can still share all the code we did in a traditional Xamarin app, as well as the user interface logic. All shared code is either written in a Shared Project or Portable Class Library (PCL).
 
@@ -290,8 +286,6 @@ MainPage = new ExpensesPage();
 
 Run the app, and you should now see a list of expenses displayed to you.
 
-[Screenshot]
-
 Awesome! Now we have a `ListView` with our expenses that we are fetching from our view model. But what if the user wants to update this data? A common pattern in mobile development when working with `ListView`s is the pull-to-refresh pattern. Lucky for us, this is built right into Xamarin.Forms; all we have to do is configure a few properties on our `ListView`!
 
 Jumping back to `ExpensesPage.xaml`, let's add the following attributes to our `ListView` to enable the pull-to-refresh pattern.
@@ -474,8 +468,6 @@ By doing this, our `ExpensesPage.Navigation` property is now available for use! 
 ```
 
 Now, run the application, click on an expense cell, and you will be navigated to a detail page with more information about our expense!
-
-[Screenshot]
 
 ##### 6. Navigation with the Messaging Center.
 Right now, we have a working master-detail navigation flow that shows a list of expenses, as well as detailed information about each expense. We can clean this up to be even better and reduce tight coupling between our views and view models.
