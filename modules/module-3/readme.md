@@ -23,22 +23,22 @@ To help organize resources (such as our mobile app backend), we can take advanta
 
 On the left-hand side of the portal, click the `New` button. A new **blade**, or navigation window, will appear that lists services in the `Azure Marketplace`. In the search bar, type `Resource Group` and hit `Enter`. In the list of results that appear, click `Resource group`.
 
-[create-new-resource-group]
+ ![](/modules/module-3/images/create-new-resource-group.png)
 
 The `Resource group` blade will appear detailing what a resource group is, along with the publisher and a link to documentation. Click the `Create` button. A new blade will appear for us to create a new resource group. For `Resource group name`, enter a name, such as "SpentApp". Select a subscription (though generally the default) is correct. Finally, select a `Resource group location`. This is where all of our services will lie, so it's important that you pick the location that's closest to your customers. For testing, you should typically select the location that is closest to you. Click `Pin to Dashboard` to create a shortcut to this group from our Azure Dashboard, and then click `Create`.
 
-[create-empty-resource-group]
+ ![](/modules/module-3/images/create-empty-resource-group.png)
 
 A resource group will be created, and you should be navigated to a blade containing your newly-created `Resource Group`.
 
-[resource-group]
+ ![](/modules/module-3/images/resource-group.png)
 
 ##### Create an Azure Mobile App
 Now that we have a cloud container for our services, let's create an **Azure Mobile App*. Azure Mobile Apps offer a highly scalable, globally available mobile development platform that brings a rich set of capabilities to mobile developers, such as the ability to store data in the cloud, perform user authentication (local, social, and enterprise), as well as send push notifications and create custom API endpoints. They have some amazing other features, such as automatic online/offline synchronization, automatic scaling, staging environments, continuous deployment, and virtual networking.
 
 To create a new Azure Mobile App, click the `Add` button at the top of the resource group you just created and search for `Mobile Apps`.
 
-[create-azure-mobile-app]
+ ![](/modules/module-3/images/create-azure-mobile-app.png)
 
 Several different options appear in the search results. The two most important to us are `Mobile App` and `Mobile Apps Quickstart`. For production applications, you will want to create a `Mobile App`. This provides the full functionality of everything Azure Mobile Apps has to offer, including data storage with SQLServer and the ability to build backends in Node.js or .NET. For testing applications and getting started quickly, we can use the `Mobile Apps Quickstart`, which creates a Node.js backend with a backing SQLite data store that doesn't require any additional configuration.
 
@@ -48,18 +48,18 @@ Click on `Mobile Apps Quickstart`, followed by `Create`. The `Mobile Apps Quicks
 
 Select the plan that works for you, and click the `Create` button. A **deployment** will begin. 
 
-[create-new-mobile-app]
+ ![](/modules/module-3/images/create-new-mobile-app.png)
 
 You can track progress of the deployment by clicking the notification bell in the upper-righthand corner. Note that it could take anywhere from 2-5 minutes for our mobile app to deploy, as lots of things are happening behind the scenes (deployment of a website, configuration of a database, etc.).
 
-[notification]
+ ![](/modules/module-3/images/deployment-progress.png)
 
 When the deployment succeeds, go back to your resource group by clicking `Resource groups` followed by your resource group on the sidebar. Two items have been deployed to your resource group, an App Service plan and an App Service. 
 
 ##### 2. Configure Azure Easy Tables.
 Click on the App Service to view details for your Azure Mobile App. This blade is the main location for configuring Azure Mobile App settings, such as data storage, push notifications, and authentication. We can also monitor usage of our mobile app and investigate failures with our backend.
 
-[Azure-mobile-app]
+ ![](/modules/module-3/images/azure-mobile-app.png)
 
 In the search bar, search for `Easy Tables`. Easy Tables are a feature of `Azure Mobile Apps` that allow us to create a backend without writing any code. We can supply a table schema, and Easy Tables will automatically generate an API endpoint and handle all data storage for us.
 
@@ -67,7 +67,7 @@ In the search bar, search for `Easy Tables`. Easy Tables are a feature of `Azure
 
 To create a table, click the `Add` button. For the table `Name`, enter `Expense`. If you have authentication configured for your `Mobile App`, you can also manage permissions. For this workshop, let's allow create-read-update-delete (CRUD) access to everyone by leaving the default `Allow anonymous access` permission. After the table is created, click the `Expense` table. From this blade, we can view existing data, update table permissions, add custom scripts to our API endpoint, as well as manage our table schema. Click `Manage schema`, followed by `Add a column`.
 
-[manage-schema]
+ ![](/modules/module-3/images/manage-schema.png)
 
 For `Column name`, enter `company`. For `Data type`, select `String`. Repeat this process for the following properties in our `Expense` model:
 
@@ -76,7 +76,7 @@ For `Column name`, enter `company`. For `Data type`, select `String`. Repeat thi
  * `receipt`: String
  * `date` : Date
 
-[schema]
+ ![](/modules/module-3/images/schema.png)
 
 We are now done configuring our Azure Mobile App no-code backend with Easy Tables!
 
@@ -249,8 +249,6 @@ using Xamarin.Forms;
 
 Run the app, add an item, and you should see that the item is pushed to the cloud data store in our Azure Mobile App.
 
-[screenshot]
-
 Boom! We've now written all the logic for our `AzureDataService`. In just over 50 lines of code, we are saving and retrieving expenses from both our local and cloud data stores, as well as keeping them in sync. Run the app, and you'll be able to add new items and have them appear in the Easy Tables data browser.
 
-[ExpensesApp]
+ ![](/modules/module-3/images/expensesapp.png)
