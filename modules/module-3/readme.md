@@ -251,4 +251,4 @@ Run the app, add an item, and you should see that the item is pushed to the clou
 
 Boom! We've now written all the logic for our `AzureDataService`. In just over 50 lines of code, we are saving and retrieving expenses from both our local and cloud data stores, as well as keeping them in sync. Run the app, and you'll be able to add new items and have them appear in the Easy Tables data browser.
 
- ![](/modules/module-3/images/expensesapp.png)
+ ![](/modules/module-3/images/ExpensesApp.png)
