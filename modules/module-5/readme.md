@@ -1,4 +1,4 @@
-# Module 5: Mobile DevOps with Visual Studio Team Services, Xamarin Test Cloud, and HockeyApp
+# Module 5: Mobile DevOps with Visual Studio Team Services and HockeyApp
 **Objective**: Learn the basics of a solid Mobile DevOps strategy, including continuous integration (with Visual Studio Team Services) and deployment (with HockeyApp), as well as acceptance testing with Xamarin Test Cloud.
 
 ##### Prerequisites
@@ -127,13 +127,4 @@ Click on the build definition step for HockeyApp. Select the `HockeyApp Connecti
 
 [hockey-app-success]
 
-### Bonus
-[Overview]
-
-##### 1. Start a Xamarin Test Cloud trial.
-
-##### 2. Create your first automated user interface test script.
-
-##### 3. Test your app in Xamarin Test Cloud.
-
-##### 4. Add Xamarin Test Cloud to Visual Studio Team Services before deployment.
+In this workshop, you created your first mobile app for iOS, Android, and Windows using Xamarin.Forms to track expenses. We then connected our app to the cloud using the no-code Easy Tables backend in Azure Mobile Apps, and saved files to cloud storage using Azure Storage. Finally, we took a look at how to configure mobile DevOps for your apps with Visual Studio Team Services and HockeyApp.
