@@ -15,7 +15,7 @@ This module builds on Module 1 by extending your app even further to allow you t
 ##### 1. Create a data storage service with the `DependencyService`.
 The current architecture of Spent isn't bad, but there's definitely room for improvement, especially relating to data. We will likely need a way to access our expense data no matter where we are in the application (such as adding a new expense). Additionally, we also need flexibility in the event that we want to change how our data is stored in the future (such as in the cloud). 
 
-We can use the Xamarin.Forms `DependencyService` to reduce coupling even further, and allow us to easily switch out data storage implementations with just one line of code. The `DependencyService` is a dependency resolver. In practice, an interface is defined and the `DependencyService` finds the correct implementation of that interface. This is often used in Xamarin.Forms apps to access platform-specific functionality and features, but we can use it as a regular dependency service as well. 
+We can use the Xamarin.Forms [`DependencyService`](https://developer.xamarin.com/guides/xamarin-forms/dependency-service/) to reduce coupling even further, and allow us to easily switch out data storage implementations with just one line of code. The `DependencyService` is a dependency resolver. In practice, an interface is defined and the `DependencyService` finds the correct implementation of that interface. This is often used in Xamarin.Forms apps to access platform-specific functionality and features, but we can use it as a regular dependency service as well. 
 
 There are three main parts to the `DependencyService`:
 
