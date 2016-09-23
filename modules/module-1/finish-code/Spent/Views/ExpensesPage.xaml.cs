@@ -47,7 +47,7 @@ namespace Spent
 		void UnsubscribeFromMessages()
 		{
 			MessagingCenter.Unsubscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail");
-			MessagingCenter.Unsubscribe<NewExpenseViewModel, string>(this, "Error");
+			MessagingCenter.Unsubscribe<ExpensesViewModel, string>(this, "Error");
 		}
 	}
 }

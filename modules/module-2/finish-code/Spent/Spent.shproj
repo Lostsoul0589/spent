@@ -8,12 +8,4 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.Common.props" />
   <Import Project="Spent.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
-  <Compile Include="App.xaml.cs">
-    <DependentUpon>App.xaml</DependentUpon>
-    <SubType>Code</SubType>
-  </Compile>
-    <Compile Include="ExpensesPage.xaml.cs">
-    <DependentUpon>ExpensesPage.xaml</DependentUpon>
-    <SubType>Code</SubType>
-  </Compile>
 </Project>
