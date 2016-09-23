@@ -97,23 +97,24 @@ Now that we have our data initialized, let's add implementations for our `AddExp
 ```csharp
 public async Task AddExpenseAsync(Expense expense)
 {
-    Initialize();
-
+	Initialize();
 	expenses.Add(expense);
+	
+	return Task.FromResult(true);
 }
 
 public async Task<IEnumerable<Expense>> GetExpensesAsync()
 {
 	Initialize();
 
-	return expenses;
+	return Task.Run(() => expenses);
 }
 ```
 
 The final step required in working with `DependencyService` is registration. We can easily do this by adding the following attribute to the top of the namespace in the `MockDataService` class.
 
 ```csharp
-[assembly: Dependency(typeof(Spent.MockDataService))]
+[assembly: Xamarin.Forms.Dependency(typeof(Spent.MockDataService))]
 ```
 
 Jump back over to `ExpensesViewModel` and the `GetExpensesAsync` method. Delete the code in the try block, and replace it with the following.
@@ -192,9 +193,9 @@ public NewExpenseViewModel()
 }
 ```
 
-Now that the boilerplate code is added for our `AttachReceiptCommand`, let's add some logic to attach a receipt. Users will have the option to attach photos of their receipts to their expenses. To do this, we will take advantage of **Plugins for Xamarin**. Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project. 
+Now that the boilerplate code is added for our `AttachReceiptCommand`, let's add some logic to attach a receipt. Users will have the option to attach photos of their receipts to their expenses. To do this, we will take advantage of **[Plugins for Xamarin](https://github.com/xamarin/XamarinComponents)**. Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project. 
 
-For Spent, we will be taking advantage of the Media Plugin for Xamarin and Windows to take and/or select photos from the user's library to attach receipts. Plugins are distributed via NuGet, and the dependency has already been added for you, so let's add our media logic to the `AttachReceiptAsync` method. 
+For Spent, we will be taking advantage of the [Media Plugin for Xamarin and Windows[(https://blog.xamarin.com/getting-started-with-the-media-plugin-for-xamarin/) to take and/or select photos from the user's library to attach receipts. Plugins are distributed via NuGet, and the dependency has already been added for you, so let's add our media logic to the `AttachReceiptAsync` method. 
 
 When using the Media Plugin for Xamarin, it's important that we initialize the plugin by calling it's `Initialize` method.
 
@@ -398,7 +399,7 @@ protected override void OnDisappearing()
 
 void SubscribeToMessages()
 {
-	MessagingCenter.Subscribe<ExpensesViewModel, string>(this, "Error", (obj, s) =>
+	MessagingCenter.Subscribe<NewExpenseViewModel, string>(this, "Error", (obj, s) =>
 	{
 		DisplayAlert("Error", s, "OK");
 	});
@@ -503,14 +504,14 @@ MessagingCenter.Unsubscribe<ExpensesViewModel, string>(this, "Navigate");
 
 Build the app, click "Add", and you should now be able to create new expenses, attach photos, and have the new expenses appear in the main `ListView` on the `ExpensesPage`.
 
-[Screenshot here]
+ ![](/modules/module-2/images/new-expense-page.png)
 
 ##### 4. Style the application.
 We are now done with the functional aspects of our unconnected Spent app. In Module 3-4, we'll take a look at connected Spent to the cloud. For the remainder of this module, we will investigate other enhancements we can make to Spent with Xamarin.Forms features.
 
 Styling is a big part of building any type of application. Individually styling controls can be incredibly painful as your application scales. Imagine that you want all heading labels to be a certain size and color, and have a custom font. Each time you create this label, you will have to not only add definitions for each of these properties, but also our code becomes much more unmaintainable. If we decide to change any of the values for heading labels, we now must make the change throughout the app.
 
-The Xamarin.Forms `ResourceDictionary` is a repository for resources that are used by a Xamarin.Forms application. Typical resources that are stored here include styles, control templates, data templates, colors, and converters. By creating a resource in the `ResourceDictionary`, we can increase the maintainability of our code by only having to make the change described above in one place. Depending on the scope of the resource, we can use the `ResourceDictionary` at the control-level, page-level, or application-level.
+The Xamarin.Forms [`ResourceDictionary`](https://developer.xamarin.com/guides/xamarin-forms/xaml/resource-dictionaries/) is a repository for resources that are used by a Xamarin.Forms application. Typical resources that are stored here include styles, control templates, data templates, colors, and converters. By creating a resource in the `ResourceDictionary`, we can increase the maintainability of our code by only having to make the change described above in one place. Depending on the scope of the resource, we can use the `ResourceDictionary` at the control-level, page-level, or application-level.
 
 Let's jump over to `App.xaml` and define some resources for our application to use. Within `Application.Resources`, we can create a new `ResourceDictionary` element and add individual keys and values to the dictionary.
 
@@ -580,7 +581,7 @@ Open up `ExpenseDetailPage` and update the XAML to use our application `Resource
 
 Run the app, and you will see that we continue to use the same theming as before, this time with the more maintainable Xamarin.Forms `ResourceDictionary`.
 
-What if we want to enforce a consistent look across an app (or even multiple applications). Teams working on a family of apps should aim for consistent branding, and Xamarin.Forms **Styles** can help make that happen. Styles are defined in the `ResourceDictionary` and referenced from XAML. Instead of having to define a `TextColor`, `TextSize`, and `Font`, we can apply a single `Style` for the control, rather than continuing to reference all three properties. Implicit references can be applied to a particular control or page, and don't have to be explictly set as the `Style` for the view. This is great where you have a look that must be consistent for all instances of a control.
+What if we want to enforce a consistent look across an app (or even multiple applications). Teams working on a family of apps should aim for consistent branding, and Xamarin.Forms **[Styles](https://developer.xamarin.com/guides/xamarin-forms/user-interface/styles/)** can help make that happen. Styles are defined in the `ResourceDictionary` and referenced from XAML. Instead of having to define a `TextColor`, `TextSize`, and `Font`, we can apply a single `Style` for the control, rather than continuing to reference all three properties. Implicit references can be applied to a particular control or page, and don't have to be explictly set as the `Style` for the view. This is great where you have a look that must be consistent for all instances of a control.
 
 In Spent, let's create an implicit style to apply to our `NavigationPage` that alters the `BarBackgroundColor` and `BarTextColor` of the navigation bar. Open up `App.xaml`, and add the following to the `ResourceDictionary`.
 
@@ -593,7 +594,7 @@ In Spent, let's create an implicit style to apply to our `NavigationPage` that a
 
 Run the app, and you will now notice a beautiful navigation bar on our `ExpensesPage` that was implicitly applied with Xamarin.Forms styles.
 
-[Screenshot]
+ ![](/modules/module-2/images/styles.png)
 
 ##### 5. Use native embedding to add native controls.
 One of the best features of Xamarin.Forms is that we still have access to 100% of the underlying native controls and features. In this section, we'll investigate how to add platform-specific views to Spent to enhance our Android application.
@@ -605,11 +606,11 @@ Platform-specific functionality falls into two main buckets:
 
 Platform-specific features can be brought into Xamarin.Forms apps by using the `DependencyService` introduced earlier in this module. Simply define an interface, implement the interface on each platform to provide the functionality you would like, and register the implementations.
 
-To add or alter functionality in existing Xamarin.Forms controls or create our own, we have many different options available within Xamarin.Forms. The most powerful is **custom renderers**. All controls built in Xamarin.Forms map to a native `Renderer` that use native controls. For example, the `Entry` in Xamarin.Forms maps to a `UITextField` on iOS, `EditText` on Android, and `TextBox` on Windows. We can tap into these renderers and make adjustments to the control's look or functionality. Additionally, we can create custom renderers to bring entirely new controls to Xamarin.Forms, such as charting or mapping controls.
+To add or alter functionality in existing Xamarin.Forms controls or create our own, we have many different options available within Xamarin.Forms. The most powerful is **[custom renderers](https://developer.xamarin.com/guides/xamarin-forms/custom-renderer/)**. All controls built in Xamarin.Forms map to a native `Renderer` that use native controls. For example, the `Entry` in Xamarin.Forms maps to a `UITextField` on iOS, `EditText` on Android, and `TextBox` on Windows. We can tap into these renderers and make adjustments to the control's look or functionality. Additionally, we can create custom renderers to bring entirely new controls to Xamarin.Forms, such as charting or mapping controls.
 
-Custom renderers are great because you have pull power over how controls are rendered and work, but they are a bit complex and overweight for most user interface tweaks. What if I just want to alter the `Slider` control to change colors as the value of the control changes? We could use custom renderers, but this is only a matter of altering a few properties. For this, we can use **effects**. To use effects, we can create a `PlatformEffect` class in our platform-specific project, override `OnAttached`, and set the property. Then we can attribute our `Effect` and apply it to controls in our Xamarin.Forms user interface.
+Custom renderers are great because you have pull power over how controls are rendered and work, but they are a bit complex and overweight for most user interface tweaks. What if I just want to alter the `Slider` control to change colors as the value of the control changes? We could use custom renderers, but this is only a matter of altering a few properties. For this, we can use **[effects](https://developer.xamarin.com/guides/xamarin-forms/effects/)**. To use effects, we can create a `PlatformEffect` class in our platform-specific project, override `OnAttached`, and set the property. Then we can attribute our `Effect` and apply it to controls in our Xamarin.Forms user interface.
 
-What if we could just native embed controls directly into our user interface? We can do this with **native embedding**. This feature requires Shared Projects, as we will have to use compiler directives to make sure we aren't on the wrong platform. 
+What if we could just native embed controls directly into our user interface? We can do this with **[native embedding](https://developer.xamarin.com/guides/xamarin-forms/user-interface/layouts/add-platform-controls/)**. This feature requires Shared Projects, as we will have to use compiler directives to make sure we aren't on the wrong platform. 
 
 It's important that we're building mobile apps that take advantage of all the platforms have to offer, and that includes buiding user interfaces the way that platform's users expect. Recently, the `FloatingActionButton` has become the defacto way to "add" something on Android. Let's allow users on Android to use the `FloatingActionButton` to add new expenses.
 
@@ -685,7 +686,7 @@ In the code above, we add a new `FloatingActionButton` to our `RelativeLayout`. 
 
 Run the app, and you will notice a beautiful `FloatingActionButton` that, when clicked, navigates users to the add new expense page.
 
-[Screenshot]
+ ![](/modules/module-2/images/native-embedding.png)
 
 > Currently in prerelease is a feature that allows us to add iOS and Android controls directly to our XAML, and even perform data binding and commanding with no additional configuration. 
 
