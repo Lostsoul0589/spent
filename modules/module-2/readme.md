@@ -195,7 +195,7 @@ public NewExpenseViewModel()
 
 Now that the boilerplate code is added for our `AttachReceiptCommand`, let's add some logic to attach a receipt. Users will have the option to attach photos of their receipts to their expenses. To do this, we will take advantage of **[Plugins for Xamarin](https://github.com/xamarin/XamarinComponents)**. Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project. 
 
-For Spent, we will be taking advantage of the [Media Plugin for Xamarin and Windows[(https://blog.xamarin.com/getting-started-with-the-media-plugin-for-xamarin/) to take and/or select photos from the user's library to attach receipts. Plugins are distributed via NuGet, and the dependency has already been added for you, so let's add our media logic to the `AttachReceiptAsync` method. 
+For Spent, we will be taking advantage of the [Media Plugin for Xamarin and Windows](https://blog.xamarin.com/getting-started-with-the-media-plugin-for-xamarin/) to take and/or select photos from the user's library to attach receipts. Plugins are distributed via NuGet, and the dependency has already been added for you, so let's add our media logic to the `AttachReceiptAsync` method. 
 
 When using the Media Plugin for Xamarin, it's important that we initialize the plugin by calling it's `Initialize` method.
 
