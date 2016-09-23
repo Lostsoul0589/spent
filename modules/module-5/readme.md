@@ -34,7 +34,7 @@ Drag the code from this module's folder to the respository folder. This is most 
 Awesome! Now that our code is hosted in GitHub, let's configure a VSTS account to provide continuous integration.
 
 ##### 2. Create a Visual Studio Team Services account.
-Visual Studio Team Services provides a set of cloud-powered collaboration tools, from code respositories, to continuous integration, to bug tracking and agile planning tools. In this module, we will be using it for continuous integration. If you already have a VSTS account, feel free to skip to Step #2.
+[Visual Studio Team Services](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) provides a set of cloud-powered collaboration tools, from code respositories, to continuous integration, to bug tracking and agile planning tools. In this module, we will be using it for continuous integration. If you already have a VSTS account, feel free to skip to Step #2.
 
 Visit the [Visual Studio Team Services landing page](https://www.visualstudio.com/en-us/products/visual-studio-team-services-vs.aspx) and click `Get started for FREE` to begin.
 
