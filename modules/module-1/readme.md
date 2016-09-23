@@ -19,9 +19,13 @@ This solution contains 4 projects:
 * Spent.iOS - Xamarin.iOS application
 * Spent.Windows - Windows 10 UWP application (can only be run from Visual Studio 2015 on Windows 10).
 
+ ![](/modules/module-1/images/solution-explorer.png)
+
 NuGet is a package manager for .NET that helps us take advantage of existing libraries like JSON.NET to share more code and build apps even quicker. All projects already have NuGet dependencies added, so there is no need to install additional NuGets during the workshop. To download the NuGets already added to the projects by restoring them.
 
 To do this, right-click on the solution name in the **Solution Explorer** and click **Restore NuGet Packages**.
+
+ ![](/modules/module-1/images/restore-nugets.png)
 
 ### Module Instructions
 Let's get started building our expenses mobile app - Spent!
@@ -29,11 +33,13 @@ Let's get started building our expenses mobile app - Spent!
 ##### 1. Run the starter code.
 To begin, open up the starter code in either Visual Studio or Xamarin Studio. Debug the application for either iOS, Android, or Universal Windows Platform (UWP).
 
-> Note that if you are using Visual Studio on Windows, you will need to have to be connected to a Mac to build and debug the iOS solution. If you are running Xamarin Studio on Mac, the Universal Windows Platform project cannot be built.
+> Note that if you are using Visual Studio on Windows, you will need to have to be [connected to a Mac](https://developer.xamarin.com/guides/ios/getting_started/installation/windows/connecting-to-mac/) to build and debug the iOS solution. If you are running Xamarin Studio on Mac, the Universal Windows Platform project cannot be built.
 
 When the app deploys to the simulator or emulator, you will see a single label that says "Welcome to Xamarin.Forms!".
 
-Let's investigate the key pieces of a Xamarin.Forms application. Expand the `Spent` project to see several empty folders and a few files. Traditional Xamarin apps allow us to share between 70-90% of code, but all user interface logic resides in the individual platform projects. For Xamarin.Forms apps, we can still share all the code we did in a traditional Xamarin app, as well as the user interface logic. All shared code is either written in a Shared Project or Portable Class Library (PCL).
+ ![](/modules/module-1/images/welcome-to-xamarin-forms.png)
+
+Let's investigate the key pieces of a Xamarin.Forms application. Expand the `Spent` project to see several empty folders and a few files. Traditional Xamarin apps allow us to share between 70-90% of code, but all user interface logic resides in the individual platform projects. For Xamarin.Forms apps, we can still share all the code we did in a traditional Xamarin app, as well as the user interface logic. All shared code is either written in a [Shared Project](https://developer.xamarin.com/guides/cross-platform/application_fundamentals/shared_projects/) or [Portable Class Library (PCL)](https://developer.xamarin.com/guides/cross-platform/application_fundamentals/pcl/).
 
 The `Application` class is the main entry point for Xamarin.Forms applications. This class selects the main page of the application and handles application lifecycle logic, such as `OnStart`, `OnSleep`, and `OnResume`.
 
@@ -44,14 +50,14 @@ Xamarin.Forms.Forms.Init(this, bundle);
 LoadApplication(new App());
 ```
 
-Within an application are a series of screens, or **Pages**. There are seven different types of pages in Xamarin.Forms, ranging from pages for displaying content (`ContentPage`) to pages that manage navigation (`TabbedPage`, `NavigationPage`, etc.). Pages define a user interface either in XAML or C#. If you define your user interface logic in XAML, you will also have an assicated codebehind file (aptly-named `.xaml.cs`) for the logic for that page. `MainPage` in the `Spent` project is an example of a page. 
+Within an application are a series of screens, or **[Pages](https://developer.xamarin.com/guides/xamarin-forms/controls/pages/)**. There are seven different types of pages in Xamarin.Forms, ranging from pages for displaying content (`ContentPage`) to pages that manage navigation (`TabbedPage`, `NavigationPage`, etc.). Pages define a user interface either in XAML or C#. If you define your user interface logic in XAML, you will also have an assicated codebehind file (aptly-named `.xaml.cs`) for the logic for that page. `MainPage` in the `Spent` project is an example of a page. 
 
-Within a page, we can use **Layouts** to let Xamarin.Forms know how to display individual controls within the page. There are two main types: managed and unmanaged layouts. Generally, we will opt for managed layouts, as they smartly "manage" the layout of our controls, no matter what OS or device the app is running on.
+Within a page, we can use **[Layouts](https://developer.xamarin.com/guides/xamarin-forms/controls/layouts/)** to let Xamarin.Forms know how to display individual controls within the page. There are two main types: managed and unmanaged layouts. Generally, we will opt for managed layouts, as they smartly "manage" the layout of our controls, no matter what OS or device the app is running on.
 
 ##### 3. Add a base view model.
 Now that we have a basic introduction to Xamarin.Forms, let's begin building our app! Xamarin.Forms has built-in support for the Model-ViewModel-View (MVVM) design pattern that's common in Windows development. This helps us to separate our user interface logic from our business logic. The **View** contains all user interface logic (or what the user sees when they use your application). The **ViewModel** is an abstraction of the view that contains the logic that drives user interaction with our application. An example for a page with a list of items may be logic to download JSON from the web, deserialize it, and put it into a list for our user interface to display. The **Model** is a domain model or a data-access layer.
 
-To get started with MVVM, we need to use the concept of **data binding**. Data binding is the flow of data between our view and view model, such as when a user pulls-to-refresh to load new data, or types into a textbox. Our user interface should be alerted when anything changes in our view model. To do this, we will implement the `INotifyPropertyChanged` interface. Because this behavior is something we will want to have in all of our view models for this app, let's start by adding a new base view model that we can reuse.
+To get started with MVVM, we need to use the concept of **[data binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/)**. Data binding is the flow of data between our view and view model, such as when a user pulls-to-refresh to load new data, or types into a textbox. Our user interface should be alerted when anything changes in our view model. To do this, we will implement the `INotifyPropertyChanged` interface. Because this behavior is something we will want to have in all of our view models for this app, let's start by adding a new base view model that we can reuse.
 
 Right-click the `View Models` folder, select `Add -> New File`, select an empty C# class, and name it `BaseViewModel`. Bring in the `System.ComponentModel` namespace, and implement the `INotifyPropertyChanged` interface.
 
@@ -143,6 +149,8 @@ There are many different ways to represent a list of items in .NET, but we will 
 
 Add new collection to the class for storing our expenses and initialize it in the constructor.
 
+> **Note**: Developers using Visual Studio may notice that namespaces are typed according the ProjectName.FolderName heuristic. Spent may require you to bring in additional namespaces due to this. For example, when you reference the `Expense` model in `ExpensesViewModel`, you may have to add an additional using for `Spent.Models`. 
+
 ```csharp
 using System;
 using System.Collections.ObjectModel;
@@ -166,7 +174,7 @@ Now that we have a collection for storing our user's expenses, let's add a metho
 ```csharp
 using System.Threading.Tasks;
 using Xamarin.Forms;
-
+...
 async Task GetExpensesAsync()
 {
     if (IsBusy)
@@ -189,9 +197,9 @@ async Task GetExpensesAsync()
 }
 ```
 
-The `GetExpensesAsync` method above is a great example of boilerplate for all view model methods. First, we check if `IsBusy` is `true` (in which case we don't need to repeat the operation). If it is not, set `IsBusy` to `true`, then execute the logic for our method. If there are any issues, report that exception to the user via the `MessengingCenter` (which we will cover later). Finally, make sure that `IsBusy` is set to `false` again so you can continue new operations in the view model.
+The `GetExpensesAsync` method above is a great example of boilerplate for all view model methods. First, we check if `IsBusy` is `true` (in which case we don't need to repeat the operation). If it is not, set `IsBusy` to `true`, then execute the logic for our method. If there are any issues, report that exception to the user via the `MessengingCenter` (which we will cover later in this module). Finally, make sure that `IsBusy` is set to `false` again so you can continue new operations in the view model.
 
-Let's add some mock user data to our method within the `try/catch/finally` block.
+Let's add some mock user data to our method within the `try` block of `GetExpensesAsync`.
 
 ```csharp
 Expenses.Clear();
@@ -220,9 +228,9 @@ We now have a completed `ExpensesViewModel` that loads up a list of `Expenses` a
 ##### 4. Add expenses page.
 User interfaces in Xamarin.Forms are built by using C# or XAML markup. While there are benefits and drawbacks to each approach, XAML helps us to best implement the MVVM pattern and maintain a separation of our view model and view logic. It also helps in visualizing the visual tree that can be a bit harder to do when defining our user interfaces in C#.
 
-Let's add a page to display our expenses. Right-click the `Views` folder, click `Add -> New File`, add a `Forms -> Forms ContentPage Xaml`, and name it `ExpensesPage`. Two files will be added: `ExpensesPage.xaml` for defining our user interface, and `ExpensesPage.xaml.cs` (our "codebehind") for hooking up our view to our view model. 
+Let's add a page to display our expenses. Right-click the `Views` folder, click `Add -> New File`, add a `Forms -> Forms ContentPage Xaml` if using Xamarin Studio or a `Cross-Platform -> Forms Xaml Page` if using Visual Studio, and name it `ExpensesPage`. Two files will be added: `ExpensesPage.xaml` for defining our user interface, and `ExpensesPage.xaml.cs` (our "codebehind") for hooking up our view to our view model. 
 
-Because we are displaying a list of items, the control that makes the most sense here is the `ListView` control. Add a `ListView` between the `ContentPage.Content` elements in XAML.
+Because we are displaying a list of items, the control that makes the most sense here is the [`ListView`](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/) control. Add a `ListView` between the `ContentPage.Content` elements in XAML.
 
 ```csharp
 <?xml version="1.0" encoding="UTF-8"?>
@@ -255,7 +263,7 @@ This means that all data displayed in the `ListView` is "bound" to the `Expenses
 </ListView>
 ```
 
-The code above is boilerplate code for defining individual cells within a `ListView`. Xamarin.Forms comes with several prebuilt cells for you to take advantage of (such as `TextCell`, `ImageCell`, and `SwitchCell`), but you can also build your own. Let's take advantage of the prebuilt `TextCell` to display our `Expense` data.
+The code above is boilerplate code for defining individual cells within a `ListView`. Xamarin.Forms comes with several [prebuilt cells](https://developer.xamarin.com/guides/xamarin-forms/controls/cells/) for you to take advantage of (such as `TextCell`, `ImageCell`, and `SwitchCell`), but you can also build your own. Let's take advantage of the prebuilt `TextCell` to display our `Expense` data.
 
 ```csharp
 <ListView ItemsSource="{Binding Expenses}">
@@ -267,7 +275,7 @@ The code above is boilerplate code for defining individual cells within a `ListV
 </ListView>
 ```
 
-This defines a `ListView` populated by data from the `Expenses` object. Each cell is an individual `Expense`, so we can data bind directly to the properties of that expense (`Company`, `Description`, `Amount`, etc.). But this begs an important question - how does the view know what objects to bind to? To let our view know where objects being data boudn to can be found, we need to set the `BindingContext` for the page. The `BindingContext` is where Xamarin.Forms will look for objects being data bound from the user interface. To configure this, all we need to do is go to `ExpensesPage.xaml.cs` and add the following line to our constructor.
+This defines a `ListView` populated by data from the `Expenses` object. Each cell is an individual `Expense`, so we can data bind directly to the properties of that expense (`Company`, `Description`, `Amount`, etc.). But this begs an important question - how does the view know what objects to bind to? To let our view know where objects being data bound to can be found, we need to set the `BindingContext` for the page. The `BindingContext` is where Xamarin.Forms will look for objects being data bound from the user interface. To configure this, all we need to do is go to `ExpensesPage.xaml.cs` and add the following line to our constructor.
 
 ```csharp
 public ExpensesPage()
@@ -286,7 +294,9 @@ MainPage = new ExpensesPage();
 
 Run the app, and you should now see a list of expenses displayed to you.
 
-Awesome! Now we have a `ListView` with our expenses that we are fetching from our view model. But what if the user wants to update this data? A common pattern in mobile development when working with `ListView`s is the pull-to-refresh pattern. Lucky for us, this is built right into Xamarin.Forms; all we have to do is configure a few properties on our `ListView`!
+ ![](/modules/module-1/images/expenses-list-view.png)
+
+Awesome! Now we have a `ListView` with our expenses that we are fetching from our view model. But what if the user wants to update this data? A common pattern in mobile development when working with `ListView`s is the [pull-to-refresh pattern](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/interactivity/#Pull_to_Refresh). Lucky for us, this is built right into Xamarin.Forms; all we have to do is configure a few properties on our `ListView`!
 
 Jumping back to `ExpensesPage.xaml`, let's add the following attributes to our `ListView` to enable the pull-to-refresh pattern.
 
@@ -314,7 +324,7 @@ Re-run Spent, and you should now be able to pull-to-refresh to load data!
 ##### 5. Add expense detail page.
 Most `ListView`s also allow users to click on individual cells to view a detail screen with more information about the particular object seen in the cell. This is known as **Master/Detail Navigation** and is a very common pattern in mobile development. Replicating this kind of behavior is extremely easy with Xamarin.Forms.
 
-Let's start off by adding a new Xamarin.Forms XAML `ContentPage` to the `Views` folder named `ExpenseDetailPage`. Within this page, we will display all the properties of the `Expense` object, including the receipt photo. Because we will be using more than one `View` within this page (unlike `ExpensesPage`), we will need to use one of Xamarin.Forms' layouts to layout our controls. The easiest and most common layout is the `StackLayout`, which defines a stack of controls in either the vertical or horizontal orientation. Let's add a new `StackLayout` with a `Padding` of `20` to ensure that our views inside the layout aren't too close to the left, top, right, or bottom of the screen.
+Let's start off by adding a new Xamarin.Forms XAML `ContentPage` to the `Views` folder named `ExpenseDetailPage`. Within this page, we will display all the properties of the `Expense` object, including the receipt photo. Because we will be using more than one `View` within this page (unlike `ExpensesPage`), we will need to use one of Xamarin.Forms' layouts to layout our controls. The easiest and most common layout is the [`StackLayout`](https://developer.xamarin.com/api/type/Xamarin.Forms.StackLayout/), which defines a stack of controls in either the vertical or horizontal orientation. Let's add a new `StackLayout` with a `Padding` of `20` to ensure that our views inside the layout aren't too close to the left, top, right, or bottom of the screen.
 
 ```csharp
 <?xml version="1.0" encoding="UTF-8"?>
@@ -405,7 +415,18 @@ public Expense SelectedExpenseItem
 
 In this code, we are updating the `SelectedExpenseItem`, and firing `OnPropertyChanged`. If the selected item is not null, we want to navigate to the detail page. Finally, we set the value to `null` to remove any cell highlighting that happens when a user taps the cell.
 
-To handle navigation, let's create a property of type `Page` named `ExpensesPage`, and add a parameter to the constructor of our `ExpensesViewModel` to take in a `Page` and set this equal to our `ExpensesPage` property. Next, let's update our `SelectedExpenseItem` property to navigate when the value is changed.
+To handle navigation, we will need a reference to a `Page`. Let's add a class-level field typed `ExpensesPage`, add a parameter to the constructor of `ExpensesViewModel` to take in an `ExpensesPage`, and this equal to our new `ExpensesPage` field.
+
+```csharp
+ExpensesPage page;
+public ExpensesViewModel(ExpensesPage expensesPage)
+{
+	page = expensesPage;
+	...
+}
+```
+
+Next, let's update our `SelectedExpenseItem` property to navigate when the value is changed.
 
 ```csharp
 Expense selectedExpenseItem;
@@ -440,7 +461,7 @@ public partial class ExpensesPage : ContentPage
 }
 ```
 
-You may have caught that we are using a `Navigation` property of the page to push a new detail page onto the navigation stack. Right now, `ExpensesPage` is a `ContentPage`, which doesn't contain any ability to do navigation. To gain this ability, we must wrap our `ExpensesPage` in a `NavigationPage` to gain the ability to do push/pop and modal navigation. Jump over to `App.xaml.cs` and update the `MainPage` to the following.
+You may have caught that we are using a `Navigation` property of the page to push a new detail page onto the navigation stack. Right now, `ExpensesPage` is a `ContentPage`, which doesn't contain any ability to do navigation. To gain this ability, we must wrap our `ExpensesPage` in a [`NavigationPage`](https://developer.xamarin.com/api/type/Xamarin.Forms.NavigationPage/) to gain the ability to do push/pop and modal navigation. Jump over to `App.xaml.cs` and update the `MainPage` to the following.
 
 ```csharp
 MainPage = new NavigationPage(new ExpensesPage());
@@ -448,7 +469,7 @@ MainPage = new NavigationPage(new ExpensesPage());
 
 By doing this, our `ExpensesPage.Navigation` property is now available for use! Additionally, by using a `NavigationPage`, we get a nice navigation bar at the top of all of our pages to alert users to what page they are on, and to navigate back to the top of the stack (with a "back" button). To have a title display in the navigation bar, we can update the `Title` property of each page to the appropriate value.
 
-**ExpensesPage**
+`**ExpensesPage**`
 ```csharp
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Spent.ExpensesPage"
@@ -458,7 +479,7 @@ By doing this, our `ExpensesPage.Navigation` property is now available for use! 
 
 ```
 
-**ExpenseDetailPage**
+`**ExpenseDetailPage**`
 ```csharp
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Spent.ExpenseDetailPage"
@@ -469,17 +490,19 @@ By doing this, our `ExpensesPage.Navigation` property is now available for use! 
 
 Now, run the application, click on an expense cell, and you will be navigated to a detail page with more information about our expense!
 
+ ![](/modules/module-1/images/expenses-detail-view.png)
+
 ##### 6. Navigation with the Messaging Center.
 Right now, we have a working master-detail navigation flow that shows a list of expenses, as well as detailed information about each expense. We can clean this up to be even better and reduce tight coupling between our views and view models.
 
-Xamarin.Forms `MessagingCenter` enables view models and other components to communicate without having to know anything about each other besides a simple message contract. There are two main parts to the `MessagingCenter`:
+Xamarin.Forms [`MessagingCenter`](https://developer.xamarin.com/guides/xamarin-forms/messaging-center/) enables view models and other components to communicate without having to know anything about each other besides a simple message contract. There are two main parts to the `MessagingCenter`:
 
 1. **Subscribe**: Listen for messages with a certain signature and perform some action when they are received. Mulitple subscribers can be listening for the same message.
 2. **Send**: Publish a message for listeners to act upon. If no listeners have subscribed then the message is ignored.
 
 Instead of passing a `Page` around to handle navigation, what if we used the Xamarin.Forms `MessagingCenter` to handle this? Let's update our current app to use this approach.
 
-Let's start by undoing some of the harm we have done! Open `ExpensesViewModel` and remove the parameter from the constructor, as well as the `ExpensesPage` property and all references to it. Jump over to `ExpensesPage.xaml.cs` and update initialization of the `ExpensesViewModel` to have no parameters. 
+Let's start by undoing some of the "harm" we have done! Open `ExpensesViewModel` and remove the parameter from the constructor, as well as the `ExpensesPage` field and all references to it in `SelectedExpenseItem`. Jump over to `ExpensesPage.xaml.cs` and update initialization of the `ExpensesViewModel` to have no parameters. 
 
 Next, let's open back up `ExpensesViewModel` and send our first message! Let's send a message by using the following method signature `MessagingCenter.Send(TSender sender, string message, TArgs args)`. 
 
@@ -556,7 +579,7 @@ We can easily unsuscribe in `UnsubscribeFromMessages` as well.
 
 ```csharp
 MessagingCenter.Unsubscribe<ExpensesViewModel, Expense>(this, "NavigateToDetail");
-MessagingCenter.Unsubscribe<NewExpenseViewModel, string>(this, "Error");
+MessagingCenter.Unsubscribe<ExpensesViewModel, string>(this, "Error");
 ```
 
 Run the app, and navigation should still be working as intended - only this time we are properly avoiding tight coupling between our view model and view.
