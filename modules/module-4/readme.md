@@ -16,7 +16,7 @@ Download the starter code for this module to begin, or continue working with the
 This module introduces Azure Storage, which we will use to store receipt images in Spent. This module also introduces Azure Functions and serverless computing, where you will learn how to create a trigger-based function that uses Microsoft Cognitive Services to smartly clip our receipt images.
 
 ##### 1. Create an Azure Storage bucket.
-Azure Storage is a service offered by Microsoft that provides scalable cloud storage for unstructured data (i.e. blobs), files, NoSQL tables, and queues. Blob storage is an important concept for mobile developers, as most mobile apps have some sort of data that must be stored outside of a typical table data store (such as an image or file). 
+[Azure Storage](https://azure.microsoft.com/en-us/services/storage/) is a service offered by Microsoft that provides scalable cloud storage for unstructured data (i.e. blobs), files, NoSQL tables, and queues. Blob storage is an important concept for mobile developers, as most mobile apps have some sort of data that must be stored outside of a typical table data store (such as an image or file). 
 
 Let's use Azure Storage to store the receipt images that users wish to upload. Just like all Microsoft cloud services, we will can create a new Azure Storage at [portal.azure.com](https://portal.azure.com). Click `New` in the sidebar,  search for `Azure Storage`, select the `Storage account` option, and click `Create`.
 
@@ -52,7 +52,7 @@ Name the container `receipts`, select the `Blob` access type to allow public rea
 ##### 3. Store receipts to Azure Storage.
 Now that our server-side setup is complete to store blobs, let's update our Spent app to use Azure Storage to store photos of receipts. 
 
-Just like Azure Mobile Apps, Azure Storage has a powerful SDK named the **Windows Azure Storage SDK**. This will make it super easy for us to upload blobs and other types of data to Azure Storage. If your app revolves around storage, the SDK even extends the powerful offline sync functionality found in the Azure Mobile Client SDK to data stored in Azure Storage. For convienence, this NuGet has already been added to the iOS, Android, and Universal Windows Platform projects.
+Just like Azure Mobile Apps, Azure Storage has a powerful SDK named the **[Windows Azure Storage SDK](https://www.nuget.org/packages/WindowsAzure.Storage/)**. This will make it super easy for us to upload blobs and other types of data to Azure Storage. If your app revolves around storage, the SDK even extends the powerful offline sync functionality found in the Azure Mobile Client SDK to data stored in Azure Storage. For convienence, this NuGet has already been added to the iOS, Android, and Universal Windows Platform projects.
 
 Open up `NewExpenseViewModel`, and navigate to the `SaveExpenseAsync` method. Right now, we are passing the `Expense` to our `MessagingCenter`, which is subscribed to in our `ExpensesViewModel` for adding new expenses. The problem is that we are merely passing a path to a local image to the view model; ideally, we would pass the image itself for easy uploading. Add a new class-level field for storing the `MediaFile` until the user attempts to save.
 
