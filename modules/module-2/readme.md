@@ -98,16 +98,15 @@ Now that we have our data initialized, let's add implementations for our `AddExp
 public async Task AddExpenseAsync(Expense expense)
 {
 	Initialize();
-	expenses.Add(expense);
 	
-	return Task.FromResult(true);
+	expenses.Add(expense);
 }
 
 public async Task<IEnumerable<Expense>> GetExpensesAsync()
 {
 	Initialize();
 
-	return Task.Run(() => expenses);
+	return expenses;
 }
 ```
 
