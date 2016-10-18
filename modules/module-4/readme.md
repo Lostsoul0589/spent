@@ -13,7 +13,7 @@ This module does use Azure, so before beginning ensure that you have started a [
 Download the starter code for this module to begin, or continue working with the completed code from Module 3.
 
 ### Module Instructions
-This module introduces Azure Storage, which we will use to store receipt images in Spent. This module also introduces Azure Functions and serverless computing, where you will learn how to create a trigger-based function that uses Microsoft Cognitive Services to smartly clip our receipt images.
+This module introduces Azure Storage, which we will use to store receipt images in Spent.
 
 ##### 1. Create an Azure Storage bucket.
 [Azure Storage](https://azure.microsoft.com/en-us/services/storage/) is a service offered by Microsoft that provides scalable cloud storage for unstructured data (i.e. blobs), files, NoSQL tables, and queues. Blob storage is an important concept for mobile developers, as most mobile apps have some sort of data that must be stored outside of a typical table data store (such as an image or file). 
