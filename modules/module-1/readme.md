@@ -54,7 +54,7 @@ Within an application are a series of screens, or **[Pages](https://developer.xa
 
 Within a page, we can use **[Layouts](https://developer.xamarin.com/guides/xamarin-forms/controls/layouts/)** to let Xamarin.Forms know how to display individual controls within the page. There are two main types: managed and unmanaged layouts. Generally, we will opt for managed layouts, as they smartly "manage" the layout of our controls, no matter what OS or device the app is running on.
 
-##### 3. Add a base view model.
+##### 2. Add a base view model.
 Now that we have a basic introduction to Xamarin.Forms, let's begin building our app! Xamarin.Forms has built-in support for the Model-ViewModel-View (MVVM) design pattern that's common in Windows development. This helps us to separate our user interface logic from our business logic. The **View** contains all user interface logic (or what the user sees when they use your application). The **ViewModel** is an abstraction of the view that contains the logic that drives user interaction with our application. An example for a page with a list of items may be logic to download JSON from the web, deserialize it, and put it into a list for our user interface to display. The **Model** is a domain model or a data-access layer.
 
 To get started with MVVM, we need to use the concept of **[data binding](https://developer.xamarin.com/guides/xamarin-forms/xaml/xaml-basics/data_binding_basics/)**. Data binding is the flow of data between our view and view model, such as when a user pulls-to-refresh to load new data, or types into a textbox. Our user interface should be alerted when anything changes in our view model. To do this, we will implement the `INotifyPropertyChanged` interface. Because this behavior is something we will want to have in all of our view models for this app, let's start by adding a new base view model that we can reuse.
@@ -225,7 +225,7 @@ GetExpensesCommand = new Command(
 
 We now have a completed `ExpensesViewModel` that loads up a list of `Expenses` and also allows for the user to refresh the list by calling our `GetExpensesCommand`. Let's build our user interface!
 
-##### 4. Add expenses page.
+##### 5. Add expenses page.
 User interfaces in Xamarin.Forms are built by using C# or XAML markup. While there are benefits and drawbacks to each approach, XAML helps us to best implement the MVVM pattern and maintain a separation of our view model and view logic. It also helps in visualizing the visual tree that can be a bit harder to do when defining our user interfaces in C#.
 
 Let's add a page to display our expenses. Right-click the `Views` folder, click `Add -> New File`, add a `Forms -> Forms ContentPage Xaml` if using Xamarin Studio or a `Cross-Platform -> Forms Xaml Page` if using Visual Studio, and name it `ExpensesPage`. Two files will be added: `ExpensesPage.xaml` for defining our user interface, and `ExpensesPage.xaml.cs` (our "codebehind") for hooking up our view to our view model. 
@@ -321,7 +321,7 @@ Let's walkthrough the various properties we just added:
 
 Re-run Spent, and you should now be able to pull-to-refresh to load data!
 
-##### 5. Add expense detail page.
+##### 6. Add expense detail page.
 Most `ListView`s also allow users to click on individual cells to view a detail screen with more information about the particular object seen in the cell. This is known as **Master/Detail Navigation** and is a very common pattern in mobile development. Replicating this kind of behavior is extremely easy with Xamarin.Forms.
 
 Let's start off by adding a new Xamarin.Forms XAML `ContentPage` to the `Views` folder named `ExpenseDetailPage`. Within this page, we will display all the properties of the `Expense` object, including the receipt photo. Because we will be using more than one `View` within this page (unlike `ExpensesPage`), we will need to use one of Xamarin.Forms' layouts to layout our controls. The easiest and most common layout is the [`StackLayout`](https://developer.xamarin.com/api/type/Xamarin.Forms.StackLayout/), which defines a stack of controls in either the vertical or horizontal orientation. Let's add a new `StackLayout` with a `Padding` of `20` to ensure that our views inside the layout aren't too close to the left, top, right, or bottom of the screen.
@@ -492,7 +492,7 @@ Now, run the application, click on an expense cell, and you will be navigated to
 
  ![](/modules/module-1/images/expenses-detail-view.png)
 
-##### 6. Navigation with the Messaging Center.
+##### 7. Navigation with the Messaging Center.
 Right now, we have a working master-detail navigation flow that shows a list of expenses, as well as detailed information about each expense. We can clean this up to be even better and reduce tight coupling between our views and view models.
 
 Xamarin.Forms [`MessagingCenter`](https://developer.xamarin.com/guides/xamarin-forms/messaging-center/) enables view models and other components to communicate without having to know anything about each other besides a simple message contract. There are two main parts to the `MessagingCenter`:
